@@ -527,6 +527,44 @@
                 console.error('Gagal menyalin: ', err);
             });
         }
+// nama di url
+        function getGuestName() {
+    // Ambil path dari URL (contoh: "/shuni-&-keluarga")
+    let path = window.location.pathname;
+
+    // Hapus "/" di depan
+    let name = path.substring(1);
+
+    // Jika kosong, tampilkan default
+    if (!name || name.trim() === "") {
+        return "Tamu Undangan";
+    }
+
+    // Decode URL (jaga-jaga kalau ada %20 dll)
+    name = decodeURIComponent(name);
+
+    // Ganti "-" jadi spasi
+    name = name.replace(/-/g, " ");
+
+    // Rapikan spasi berlebih
+    name = name.replace(/\s+/g, " ").trim();
+
+    // Kapital huruf pertama tiap kata
+    name = name.replace(/\b\w/g, function(char) {
+        return char.toUpperCase();
+    });
+
+    return name;
+}
+
+// Tunggu sampai DOM siap
+document.addEventListener("DOMContentLoaded", function() {
+    const guestElement = document.getElementById("guest-name");
+
+    if (guestElement) {
+        guestElement.innerText = getGuestName();
+    }
+});
     </script>
     <script src="https://script.google.com/macros/s/AKfycbyZ9jXrtgDIGlkPUSVzpOMMZ9ee0FBB1xr6h1Z3GabkHMMOYtEd7vVdK_V3c_D7zfFxXQ/exec?callback=loadGuestbook"></script>
 </body>
