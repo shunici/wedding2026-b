@@ -325,8 +325,8 @@
                     <h3 class="text-lg font-bold text-white">Dana</h3>
                     <p class="text-slate-400 text-xs">A.N Ijma hasanah</p>
                 </div>
-                <h2 id="norek" class="text-2xl font-bold tracking-widest text-violet-400">083142035474</h2>
-                <button onclick="copyNorek()" class="inline-flex items-center gap-2 px-6 py-3 bg-violet-600 hover:bg-violet-500 text-white rounded-full font-bold text-sm transition-all active:scale-95">
+                <h2 id="dana" class="text-2xl font-bold tracking-widest text-violet-400">083142035474</h2>
+                <button onclick="copyDana()" class="inline-flex items-center gap-2 px-6 py-3 bg-violet-600 hover:bg-violet-500 text-white rounded-full font-bold text-sm transition-all active:scale-95">
                     <i data-lucide="copy" class="w-4 h-4"></i>
                     Salin Nomor Dana
                 </button>
@@ -521,6 +521,14 @@
            // 5. Copy Rekening
            function copyNorek() {
             const norek = document.getElementById("norek").innerText;
+            navigator.clipboard.writeText(norek).then(() => {
+                alert("Nomor Rekening berhasil disalin: " + norek);
+            }).catch(err => {
+                console.error('Gagal menyalin: ', err);
+            });
+        }
+          function copyDana() {
+            const norek = document.getElementById("dana").innerText;
             navigator.clipboard.writeText(norek).then(() => {
                 alert("Nomor Rekening berhasil disalin: " + norek);
             }).catch(err => {
